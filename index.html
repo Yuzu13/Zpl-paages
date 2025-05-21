@@ -4,40 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZPL Pages - Especialista em Landing Pages</title>
-  <link rel="stylesheet" href="styele.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <!-- Botão WhatsApp flutuante -->
-  <a href="https://wa.me/5599999999999" class="whatsapp" target="_blank" aria-label="WhatsApp">
-    💬
-  </a>
+  <a href="https://wa.me/5531994067637" class="whatsapp" target="_blank" aria-label="WhatsApp">💬</a>
 
   <!-- Header fixo -->
   <header>
     <div class="container">
-      <h1 class="logo">ZPL<span>Pages</span></h1>
+      <h1 class="logo">&lt;/&gt; ZPL<span>Pages</span></h1>
       <nav>
         <ul>
           <li><a href="#inicio">Início</a></li>
           <li><a href="#porque">Por quê?</a></li>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#contato">Contato</a></li>
+          <li><a href="http://127.0.0.1:5500/agradecimento.html">Portifolio</a></li>
         </ul>
       </nav>
     </div>
   </header>
+ 
+  <a id="#portifolio" value="">
 
   <!-- Hero Section -->
   <section id="inicio" class="hero">
     <div class="container">
       <h2>Landing Pages que Convertem</h2>
-      <p>Landing Pages, Sites e Marketing com Performance.
-A ZPL Pages entrega o que importa: <br> cliques, mais leads, mais vendas. Tudo com design inteligente e foco total na conversão.</p>
-      <a href="#contato" class="btn">Quero uma Landing Page</a>
-
+      <hr class="divider" />
+      <p>Landing Pages, Sites e Marketing com Performance.<br>
+         A ZPL Pages entrega o que importa: <strong>cliques, mais leads, mais vendas.</strong><br>
+         Tudo com design inteligente e foco total na conversão.
+      </p>
+      <a class="btn" href="#contato">Quero uma Landing Page</a>
     </div>
   </section>
+
+  <div class="section-divider"></div>
 
   <!-- Por que ter uma landing page? -->
   <section id="porque" class="section">
@@ -60,6 +65,8 @@ A ZPL Pages entrega o que importa: <br> cliques, mais leads, mais vendas. Tudo c
     </div>
   </section>
 
+  <div class="section-divider"></div>
+
   <!-- Serviços -->
   <section id="servicos" class="section light">
     <div class="container">
@@ -75,18 +82,22 @@ A ZPL Pages entrega o que importa: <br> cliques, mais leads, mais vendas. Tudo c
     </div>
   </section>
 
+  <div class="section-divider"></div>
+
   <!-- Contato -->
-  <section id="contato" class="section contato">
-    <div class="container">
-      <h2>Solicite sua landing page agora</h2>
-      <form id="contact-form">
-        <input type="text" placeholder="Seu nome" required />
-        <input type="email" placeholder="Seu e-mail" required />
-        <textarea placeholder="Fale sobre sua oferta ou produto..." required></textarea>
-        <button type="submit" class="btn">Solicitar orçamento</button>
-      </form>
-    </div>
-  </section>
+ <section id="contato" class="section contato">
+  <div class="lead-text">
+    <h2>Solicite sua landing page agora</h2>
+  </div>
+    <form action="https://formsubmit.co/markota233@gmail.com" method="POST">
+    <input type="text" name="nome" placeholder="Nome completo" required>
+    <input type="email" name="email" placeholder="E-mail" id="E-mail" required>
+    <input type="tel" name="telefone" placeholder="(00) 00000-0000" required id="telefone">
+    <input type="hidden" name="_next" value="http://127.0.0.1:5500/agradecimento.html">
+    <button type="submit" class="btn">Solicitar orçamento</button>
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Novo Formulário Recebido!">
+</section>
 
   <!-- Rodapé -->
   <footer>
@@ -96,5 +107,132 @@ A ZPL Pages entrega o que importa: <br> cliques, mais leads, mais vendas. Tudo c
   </footer>
 
   <script src="script.js"></script>
+
+
+
+  <script>
+ 
+       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+       src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/jquery.inputmask.min.js"
+
+          $(document).ready(function() {
+            $('#telefone').inputmask({
+              mask: '(99) 99999-9999',
+              placeholder: '_',
+              showMaskOnFocus: true,
+              showMaskOnHover: false,
+              clearIncomplete: true
+            });
+          });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('modalPrivacidade');
+    const form = document.querySelector('form');
+    const mensagem = document.getElementById('mensagem');
+    const cookieBanner = document.getElementById('cookieBanner');
+
+    // Mostrar o aviso de cookies se ainda não aceitou
+    if (!localStorage.getItem('cookiesAceitos')) {
+      cookieBanner.style.display = 'flex';
+    }
+
+    // Aceitar cookies
+    document.getElementById('aceitarCookies').addEventListener('click', function () {
+      localStorage.setItem('cookiesAceitos', true);
+      cookieBanner.style.display = 'none';
+    });
+
+    // Abrir Modal
+    window.openModal = function () {
+      if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // desativa scroll
+      }
+    };
+
+    // Fechar Modal
+    window.closeModal = function () {
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // reativa scroll
+      }
+    };
+
+    // Mensagem de envio
+    if (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (mensagem) {
+          mensagem.textContent = 'Cadastro realizado com sucesso!';
+        }
+        setTimeout(() => {
+          form.submit();
+        }, 1500);
+      });
+    }
+  });
+
+ 
+   
+  
+</script>
+
+<script>
+   // telefone
+  (function(){
+    const tel = document.getElementById('telefone');
+
+    // Ao focar: insere "(" se campo vazio
+    tel.addEventListener('focus', () => {
+      if (!tel.value) tel.value = '(';
+    });
+
+    // Ao desfocar: se só tiver "(", limpa
+    tel.addEventListener('blur', () => {
+      if (tel.value === '(') tel.value = '';
+    });
+
+    // Formatação dinâmica e bloqueio de não-dígitos
+    tel.addEventListener('input', () => {
+      let nums = tel.value.replace(/\D/g, '');
+      // limita a 11 dígitos
+      nums = nums.substring(0, 11);
+
+      if (nums.length <= 2) {
+        // só DDD parcial
+        tel.value = '(' + nums;
+      } else if (nums.length <= 6) {
+        // DDD + parte do número fixo (4 dígitos)
+        tel.value = '(' + nums.substring(0,2) + ') ' + nums.substring(2);
+      } else if (nums.length <= 10) {
+        // DDD + fixo completo
+        tel.value = '(' + nums.substring(0,2) + ') ' + nums.substring(2,6) + '-' + nums.substring(6);
+      } else {
+        // DDD + celular completo
+        tel.value = '(' + nums.substring(0,2) + ') ' + nums.substring(2,7) + '-' + nums.substring(7);
+      }
+    });
+
+    // Validação final no submit
+    document.getElementById('formularioContato').addEventListener('submit', function(e){
+      const telefone = tel.value;
+      const email   = this.email.value.trim();
+
+      const fixo    = /^\(\d{2}\) \d{4}-\d{4}$/.test(telefone);
+      const celular = /^\(\d{2}\) \d{5}-\d{4}$/.test(telefone);
+      const mail    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!(fixo || celular)) {
+        alert('Telefone inválido. Use (11) 91234-5678 ou (11) 3456-7890.');
+        e.preventDefault();
+        return;
+      }
+      if (!mail) {
+        alert('E-mail inválido. Digite exemplo@dominio.com');
+        e.preventDefault();
+      }
+    });
+  })();
+</script>
 </body>
 </html>
