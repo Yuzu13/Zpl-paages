@@ -34,14 +34,44 @@ document.addEventListener('DOMContentLoaded', function () {
             hamburgerMenu.classList.toggle('active'); // Para animação do ícone
         });
 
-        // Fechar menu ao clicar em um item (melhora a UX)
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                hamburgerMenu.classList.remove('active');
+       // Smooth scroll, ajuste para header fixo e fechar menu ao clicar em um item de navegação interna
+        mainNav.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Previne o comportamento padrão de salto
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const header = document.querySelector('header');
+                    let headerOffset = 0;
+
+                    // Verifica se o header existe, está visível e é fixo para pegar sua altura
+                    if (header && getComputedStyle(header).position === 'fixed') {
+                        headerOffset = header.offsetHeight;
+                    }
+
+                    // Calcula a posição correta para rolar
+                    // targetElement.getBoundingClientRect().top nos dá a posição relativa à viewport
+                    // window.scrollY nos dá o quanto já rolamos a página
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth' // A mágica da rolagem suave!
+                    });
+                }
+
+                // Fecha o menu hambúrguer (se estiver ativo e visível)
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    if (hamburgerMenu) { // Garante que hamburgerMenu foi encontrado
+                        hamburgerMenu.classList.remove('active');
+                    }
+                }
             });
         });
-    }
 
     // --- Máscara de Telefone (Escolha UMA das opções abaixo) ---
 
